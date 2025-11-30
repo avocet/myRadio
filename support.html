@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support – myRadio</title>
+  <style>
+    :root{--bg:#f7f8fb;--card:#ffffff;--accent:#1a73e8;--muted:#6b7280}
+    *{box-sizing:border-box}
+    body{font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:#111}
+    .container{max-width:980px;margin:32px auto;padding:20px}
+    header{display:flex;align-items:center;gap:16px}
+    .logo{width:64px;height:64px;background:linear-gradient(135deg,var(--accent),#6b8cff);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    h1{margin:0;font-size:1.6rem}
+    p.lead{color:var(--muted);margin-top:6px}
+
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:24px}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(17,24,39,0.06)}
+    .faq h3{margin:0 0 10px 0;font-size:1.05rem}
+    .faq p{margin:6px 0;color:var(--muted)}
+
+    form label{display:block;font-weight:600;margin-bottom:8px}
+    input[type=text], input[type=email], textarea, select{width:100%;padding:10px;border:1px solid #e6e9ef;border-radius:8px;font-size:0.95rem}
+    textarea{min-height:120px;resize:vertical}
+    .row{display:flex;gap:12px}
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;border:0;cursor:pointer}
+    .muted{color:var(--muted);font-size:0.95rem}
+
+    .links{display:flex;flex-direction:column;gap:8px}
+    .support-meta{display:flex;gap:12px;align-items:center}
+    .small{font-size:0.9rem;color:var(--muted)}
+
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.9rem}
+
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr;}
+      .logo{width:52px;height:52px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">MR</div>
+      <div>
+        <h1>myRadio Support</h1>
+        <p class="lead">Need help? Browse FAQs, report issues, or contact our support team directly.</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <main>
+        <section class="card faq">
+          <h2>Frequently Asked Questions</h2>
+
+          <h3>How do I add a station to Favorites?</h3>
+          <p class="muted">Open a station and tap the heart icon. You can view favorites from the Library tab.</p>
+
+          <h3>How is my listening history stored?</h3>
+          <p class="muted">Listening history is stored locally and (optionally) synced to your account to enable cross-device history. You can clear history in Settings &gt; Privacy.</p>
+
+          <h3>App is buffering a lot — what can I do?</h3>
+          <p class="muted">Try switching networks (Wi‑Fi vs mobile), close background apps, or select a lower-quality stream in the station settings.</p>
+
+          <h3>Where can I request a new radio station?</h3>
+          <p class="muted">Use the "Request Station" form below — provide the station name and stream URL. Our editorial team will review submissions.</p>
+
+          <h3>How do I change app language?</h3>
+          <p class="muted">myRadio follows your device language by default. To change manually, open Settings &gt; Language & Region inside the app.</p>
+        </section>
+
+        <section class="card" style="margin-top:20px">
+          <h2>Report a Problem</h2>
+          <p class="muted">If you find a technical issue or broken stream, please provide details below. Attachments and logs help us troubleshoot faster.</p>
+
+          <form id="supportForm">
+            <label for="type">Issue Type</label>
+            <select id="type" name="type">
+              <option>Playback / Buffering</option>
+              <option>Station Not Found</option>
+              <option>App Crash</option>
+              <option>Account / Sync</option>
+              <option>Other</option>
+            </select>
+
+            <label for="email">Your Email (optional)</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" />
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Brief summary" required />
+
+            <label for="message">Details</label>
+            <textarea id="message" name="message" placeholder="Describe the issue and steps to reproduce..." required></textarea>
+
+            <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+              <button type="submit" class="btn">Send Report</button>
+              <span class="small muted">We usually reply within 1–2 business days.</span>
+            </div>
+          </form>
+
+          <div id="formResult" style="margin-top:12px;display:none"></div>
+        </section>
+
+        <section class="card" style="margin-top:20px">
+          <h2>Request a Station</h2>
+          <p class="muted">Submit a station name and stream URL. We’ll verify the stream and add it to the directory if available.</p>
+
+          <form id="requestForm">
+            <label for="stationName">Station Name</label>
+            <input type="text" id="stationName" name="stationName" placeholder="e.g. Jazz FM" required />
+
+            <label for="streamUrl">Stream URL</label>
+            <input type="text" id="streamUrl" name="streamUrl" placeholder="https://example.com/stream.mp3" required />
+
+            <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+              <button type="submit" class="btn">Submit Request</button>
+              <span class="small muted">Submission does not guarantee immediate listing.</span>
+            </div>
+          </form>
+
+          <div id="requestResult" style="margin-top:12px;display:none"></div>
+        </section>
+      </main>
+
+      <aside>
+        <div class="card support-meta">
+          <div>
+            <h3>Contact Support</h3>
+            <p class="muted">Email: <a href="mailto:avocet@me.com">avocet@me.com</a></p>
+            <p class="muted">Business hours: Mon–Fri, 9:00–18:00 (UTC+8)</p>
+
+            <div style="margin-top:12px">
+              <a class="btn" href="mailto:avocet@me.com">Email Support</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3>Quick Links</h3>
+          <div class="links">
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="https://apps.apple.com/app/idXXXXXXXX">App Store Page</a>
+            <a href="#">FAQ</a>
+            <a href="#">Release Notes</a>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3>Support Resources</h3>
+          <p class="muted">How-to guides and troubleshooting articles to help you get the most out of myRadio.</p>
+          <ul style="margin-top:8px">
+            <li><a href="#">Fix playback issues</a></li>
+            <li><a href="#">Manage your favorites</a></li>
+            <li><a href="#">Clear listening history</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <p>© <span id="year"></span> myRadio. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple client-side handlers — replace with real API calls on your server
+    document.getElementById('supportForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const result = document.getElementById('formResult');
+      result.style.display = 'block';
+      result.textContent = 'Thank you — your report has been sent.';
+      result.style.color = 'green';
+      this.reset();
+    });
+
+    document.getElementById('requestForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const res = document.getElementById('requestResult');
+      res.style.display = 'block';
+      res.textContent = 'Thanks — your station request has been submitted for review.';
+      res.style.color = 'green';
+      this.reset();
+    });
+  </script>
+</body>
+</html>
